@@ -1,12 +1,38 @@
-# Job-Cost-Estimate-Backend
+# Job Cost Estimate Backend Service
 
-This is a backend service I have developed for a job cost estimate application designed for a concrete piling company. 
-The application allows users to input job details and receive an estimated cost based on various parameters.
+This backend service powers a job cost estimation application developed for a concrete piling company. The system enables users to input detailed job parameters and receive cost estimates based on company-specific formulas and metrics.
 
-I was givin permission from the company to share this code as an example of the work I have done for them.
+> 📌 *This project was developed as part of a contracted engagement. The company has granted permission to use this code as a portfolio example.*
 
-## Features
-- User authentication and authorization
-- Restful API for job cost estimates
-- Backend code for usage in a React frontend application
-- MongoDB Prisma Schema for database management
+## 🚀 Features
+
+- **User Authentication & Authorization**  
+  Login and access control for managing user sessions.
+
+- **RESTful API Endpoints**  
+  Endpoints for creating, retrieving, updating, and deleting job cost estimates.
+
+- **Frontend Integration Ready**  
+  Designed for use with a React-based frontend interface.
+
+- **MongoDB with Prisma ORM**  
+  Database management using Prisma's schema modeling and querying.
+
+## 🛠️ Technologies Used
+
+- **Node.js**
+- **Express.js**
+- **MongoDB**
+- **Prisma ORM**
+- **JWT (JSON Web Tokens)**
+- **Bcrypt.js** for password hashing
+
+📄 License
+This project is proprietary and was created under contract with permission to share for portfolio purposes. Unauthorized commercial use is prohibited.
+
+📬 Contact
+For questions or collaboration opportunities
+
+Nicolas DiMarzo
+LinkedIn: [Nicolas DiMarzo](www.linkedin.com/in/nick-dimarzo)
+nickdev.dimarzo@gmail.com
