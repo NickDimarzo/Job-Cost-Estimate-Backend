@@ -32,6 +32,6 @@ This project is proprietary and was created under contract with permission to sh
 📬 Contact
 For questions or collaboration opportunities
 
-[LinkedIn](www.linkedin.com/in/nick-dimarzo/)
+www.linkedin.com/in/nick-dimarzo
 
 nickdev.dimarzo@gmail.com
