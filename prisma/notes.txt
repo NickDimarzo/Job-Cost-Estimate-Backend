@@ -1,0 +1,18 @@
+PRISMA COMMANDS
+
+Step 1: install prisma
+npm install prisma --save-dev
+
+Step 2: install prisma client
+npm install @prisma/client
+
+Step 3: initialize prisma to the application, this creates the prisma folder
+npx prisma init
+
+Step 4: Configure MongoDB and Prisma models
+
+Step 5: Sync the application to the database
+npx prisma generate
+
+Step 6: Push the Schema to the database
+npx prisma db push 

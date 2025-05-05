@@ -1,0 +1,183 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Define your MongoDB datasource
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id         String  @id @map("_id")
+  email      String  @unique
+  name       String?
+  password   String?
+  role       String?
+  chatColour String?
+}
+
+// Define your models
+model jobCostEstimate {
+  estimateNumber   String             @id @map("_id")
+  name             String?
+  client           String?
+  location         String?
+  date             String?
+  createdBy        String?
+  createdDate      String?
+  modifiedBy       String?
+  modifiedDate     String?
+  revision         Int
+  overhead         Float
+  unforeseen       Float
+  profit           Float
+  smallTools       Float
+  isWon            Boolean?
+  drillOnly        Boolean?
+  concreteType     String?
+  tracking         tracking?
+  pileBreakDown    pileBreakDown?
+  breakDownResults breakDownResult?
+  projectResources projectResources[]
+  changeLog        changeLog[]
+  chatLog          chatLog[]
+}
+
+model tracking {
+  trackingId                    String            @id @default(auto()) @map("_id") @db.ObjectId
+  jobName                       String?
+  closingDate                   String?
+  finalPrice                    Float?
+  gc                            String?
+  chance                        String?
+  projectType                   String?
+  comments                      String?
+  projectContacts               projectContacts[]
+  jobCostEstimate               jobCostEstimate?  @relation(fields: [jobCostEstimateEstimateNumber], references: [estimateNumber])
+  jobCostEstimateEstimateNumber String?           @unique
+}
+
+model projectContacts {
+  projectContactId String    @id @default(auto()) @map("_id") @db.ObjectId
+  gc               String?
+  name             String?
+  phone            String?
+  email            String?
+  tracking         tracking? @relation(fields: [trackingId], references: [trackingId])
+  trackingId       String?   @db.ObjectId
+}
+
+model pileBreakDown {
+  pileBreakDownId               String           @id @default(auto()) @map("_id") @db.ObjectId
+  concreteLossFactor            Float?
+  standardHrsPerWorkDay         Float?
+  piles                         piles[]
+  jobCostEstimate               jobCostEstimate? @relation(fields: [jobCostEstimateEstimateNumber], references: [estimateNumber])
+  jobCostEstimateEstimateNumber String?          @unique
+}
+
+model piles {
+  pileId                               String         @id @default(auto()) @map("_id") @db.ObjectId
+  drillRig                             String?
+  pileDimensionsType                   String?
+  pileDimensionsQty                    Float?
+  pileDimensionsShaft                  Float?
+  pileDimensionsBell                   Float?
+  pileDimensionsDepthMeter             Float?
+  concreteM3PerPile                    Float?
+  concreteM3PerType                    Float?
+  drillingMinPerHole                   Float?
+  drillingHoursPerType                 Float?
+  drillingHolesPerDay                  Float?
+  reinforcementSteelVerticalsQty       Float?
+  reinforcementSteelVerticalsSize      Float?
+  reinforcementSteelVerticalsLength    Float?
+  reinforcementSteelStirrupsOverl      Float?
+  reinforcementSteelStirrupsTop        Float?
+  reinforcementSteelStirrupsTopCC      Float?
+  reinforcementSteelStirrupsBotCC      Float?
+  reinforcementSteelStirrupsQty        Float?
+  reinforcementSteelStirrupsSize       Float?
+  reinforcementSteelDowellsQty         Float?
+  reinforcementSteelDowellsSize        Float?
+  reinforcementSteelDowellsLength      Float?
+  reinforcementSteelWeightPerPile      Float?
+  reinforcementSteelWeightPerType      Float?
+  reinforcementSteelRebarVolumePercent Float?
+  performanceRate                      Float?
+  pileBreakDown                        pileBreakDown? @relation(fields: [pileBreakDownId], references: [pileBreakDownId])
+  pileBreakDownId                      String?        @db.ObjectId
+}
+
+model breakDownResult {
+  breakDownResultsId            String           @id @default(auto()) @map("_id") @db.ObjectId
+  totalEstimatedHours           Float?
+  daysToCompleteJob             Float?
+  totalHoles                    Float?
+  averageNumberOfHolesPerHour   Float?
+  averageNumberOfHolesPerDay    Float?
+  correctedVolumeConcrete       Float?
+  totalRebarWeight              Float?
+  jobCostEstimate               jobCostEstimate? @relation(fields: [jobCostEstimateEstimateNumber], references: [estimateNumber])
+  jobCostEstimateEstimateNumber String?          @unique
+}
+
+model projectResources {
+  resourceId                    String           @id @default(auto()) @map("_id") @db.ObjectId
+  type                          String?
+  name                          String?
+  quantity                      Float?
+  numberOfHours                 Float?
+  ratePerHour                   Float?
+  perPile                       Float?
+  allPile                       Float?
+  ratio                         Float?
+  profit                        Float?
+  jobCostEstimate               jobCostEstimate? @relation(fields: [jobCostEstimateEstimateNumber], references: [estimateNumber])
+  jobCostEstimateEstimateNumber String?
+}
+
+model changeLog {
+  changeId                      String           @id @default(auto()) @map("_id") @db.ObjectId
+  user                          String?
+  message                       String?
+  createdAt                     String?
+  jobCostEstimate               jobCostEstimate? @relation(fields: [jobCostEstimateEstimateNumber], references: [estimateNumber])
+  jobCostEstimateEstimateNumber String?
+}
+
+model chatLog {
+  chatId                        String           @id @default(auto()) @map("_id") @db.ObjectId
+  user                          String?
+  message                       String?
+  createdAt                     String?
+  jobCostEstimate               jobCostEstimate? @relation(fields: [jobCostEstimateEstimateNumber], references: [estimateNumber])
+  jobCostEstimateEstimateNumber String?
+}
+
+// STAND ALONE MODEL
+model resources {
+  unitNumber  Int     @id @map("_id")
+  name        String?
+  type        String?
+  ratePerHour Float?
+  stPerHour   Float?
+  status      String?
+  reason      String?
+  returnDate  String?
+}
+
+model contacts {
+  contactId String  @id @default(auto()) @map("_id") @db.ObjectId
+  gc        String?
+  name      String?
+  phone     String?
+  email     String?
+}
