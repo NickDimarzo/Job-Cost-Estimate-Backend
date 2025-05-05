@@ -21,7 +21,6 @@ This backend service powers a job cost estimation application developed for a co
 ## 🛠️ Technologies Used
 
 - **Node.js**
-- **Express.js**
 - **MongoDB**
 - **Prisma ORM**
 - **JWT (JSON Web Tokens)**
