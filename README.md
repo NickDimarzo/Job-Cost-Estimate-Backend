@@ -2,7 +2,7 @@
 
 This backend service powers a job cost estimation application developed for a concrete piling company. The system enables users to input detailed job parameters and receive cost estimates based on company-specific formulas and metrics.
 
-> 📌 *This project was developed as part of a contracted engagement. The company has granted permission to use this code as a portfolio example.*
+> 📌 *This project was developed as part of a contracted engagement. The company has granted me permission to use this code as a portfolio example.*
 
 ## 🚀 Features
 
