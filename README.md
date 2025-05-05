@@ -21,7 +21,6 @@ This backend service powers a job cost estimation application developed for a co
 ## 🛠️ Technologies Used
 
 - **Node.js**
-- **Express.js**
 - **MongoDB**
 - **Prisma ORM**
 - **JWT (JSON Web Tokens)**
@@ -33,6 +32,5 @@ This project is proprietary and was created under contract with permission to sh
 📬 Contact
 For questions or collaboration opportunities
 
-Nicolas DiMarzo
-LinkedIn: [Nicolas DiMarzo](www.linkedin.com/in/nick-dimarzo)
+[LinkedIn](www.linkedin.com/in/nick-dimarzo)
 nickdev.dimarzo@gmail.com
